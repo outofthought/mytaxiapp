@@ -1,8 +1,17 @@
-import {ADD_PLACE,DELETE_PLACE,SELECT_PLACE,DESELECT_PLACE,SET_NAME} from '../actions/actionTypes'
+import {
+    ADD_PLACE,
+    DELETE_PLACE,
+    SELECT_PLACE,
+    DESELECT_PLACE,
+    SET_NAME,
+    GET_LOCATION
+} from '../actions/actionTypes'
+import myImage from '../../../assets/cat.png'
 
 const initialState={
     places:[],
-    set:'Nona'
+    set:'Nona',
+    position:null
 }
 const reducer=(state=initialState,action)=>{
    switch(action.type){
@@ -13,7 +22,7 @@ const reducer=(state=initialState,action)=>{
                 key:Math.random(),
                 name:action.placeName,
                 image:{
-                    uri:"https://www.usmagazine.com/wp-content/uploads/2018/06/Smoothie-the-Cat-Instagram-zoom.jpg"
+                    uri:myImage
                 }
             })
         }
@@ -22,6 +31,11 @@ const reducer=(state=initialState,action)=>{
                 ...state,
                 set:action.payload
             }
+        case GET_LOCATION:
+            return{
+                ...state,
+                position:action.payload
+            }    
       
        default:
        return state
